@@ -27,6 +27,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
    I found following code to use 271 ms (which is much higher than other solutions using primitive array).
    Here, we initialize Integer (wrapper) object of size OFFSET * 2 + 1, which is much bigger in comparison to primitive array in size.
+
+    All the SegmentTree code including the Merger interface is part of the library.
+
+    If you can use this library as a dependency (or jar), you don't need the code below the OFFSET declaration (import it from the library)
  */
 
 public class CountOfSmallerNumberAfterSelfTest {

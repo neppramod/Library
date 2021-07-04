@@ -116,7 +116,7 @@ public class SegmentTree<T> {
         }
 
         T leftQuery = querySegmentTree(treeIndex * 2 + 1, lo, mid, left, mid);
-        T rightQuery = querySegmentTree(treeIndex * 2 + 2, mid + 1, hi, mid, right);
+        T rightQuery = querySegmentTree(treeIndex * 2 + 2, mid + 1, hi, mid + 1, right);
 
         return merger.merge(leftQuery, rightQuery);
     }

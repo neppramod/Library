@@ -73,6 +73,12 @@ public class CountOfSmallerNumberAfterSelfTest {
 
     static final int OFFSET = 10001;
 
+
+    /************************
+     All the code below this is part of the library. You can just import the merger and SegmentTree in
+     your class.
+     ************************/
+
     static interface Merger<T> {
         T merge(T x, T y);
     }

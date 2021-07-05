@@ -2,6 +2,14 @@ package pr.lib.ds.set.disjointset;
 
 import pr.lib.ds.tree.segmenttree.Merger;
 
+/**
+ * Generic implementation of union find data structure.
+ * Merger can be implemented using lambda.
+ * find(i) returns result that uses merger.merge(i, j) logic.
+ *
+ * See unit test for usage
+ * @param <T>
+ */
 public class UnionFind<T> {
     private int[] id;
     private int[] sz;

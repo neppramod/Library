@@ -5,12 +5,12 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class SegmentTreeTest {
+public class SegmentTreeRecTest {
 
     @Test
     public void testbuildTree() {
         Merger<Integer> merger = (x, y) -> (x == null ? (y == null ? null : y) : x + y);
-        SegmentTree<Integer> segmentTree = new SegmentTree<>(merger);
+        SegmentTreeRec<Integer> segmentTree = new SegmentTreeRec<>(merger);
         Integer[] arr = {2, 3, 5, 6, 7};
         segmentTree.buildTree(arr);
         segmentTree.printTree();
@@ -19,7 +19,7 @@ public class SegmentTreeTest {
     @Test
     public void testQueryTree() {
         Merger<Integer> merger = (x, y) -> (x == null ? (y == null ? null : y) : x + y);
-        SegmentTree<Integer> segmentTree = new SegmentTree<>(merger);
+        SegmentTreeRec<Integer> segmentTree = new SegmentTreeRec<>(merger);
         Integer[] arr = {2, 3, 5, 6, 7};
         segmentTree.buildTree(arr);
 
@@ -37,7 +37,7 @@ public class SegmentTreeTest {
     @Test
     public void testUpdateTree() {
         Merger<Integer> merger = (x, y) -> (x == null ? (y == null ? null : y) : x + y);
-        SegmentTree<Integer> segmentTree = new SegmentTree<>(merger);
+        SegmentTreeRec<Integer> segmentTree = new SegmentTreeRec<>(merger);
         Integer[] arr = {2, 3, 5, 6, 7};
         segmentTree.buildTree(arr);
 

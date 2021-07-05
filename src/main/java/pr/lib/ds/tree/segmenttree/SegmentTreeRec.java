@@ -11,7 +11,7 @@ import java.util.Arrays;
  *           separate class.
  *
  */
-public class SegmentTree<T> {
+public class SegmentTreeRec<T> {
     private T[] tree;
     private T[] lazy;
     private int N;
@@ -22,7 +22,7 @@ public class SegmentTree<T> {
      *               Because of this update uses same logic, instead of being able to set update
      *               values separately. Logic can be provided using lambda
      */
-    public SegmentTree(Merger merger) {
+    public SegmentTreeRec(Merger merger) {
         this.merger = merger;
     }
 

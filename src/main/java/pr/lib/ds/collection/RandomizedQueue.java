@@ -2,16 +2,16 @@ package pr.lib.ds.collection;
 
 import java.util.*;
 
-public class RandomizedQueue <Item> implements Iterable<Item>{
+public class RandomizedQueue <T> implements Iterable<T>{
 
     private static final int INITIAL_SIZE = 10;
 
-    private Item[] items;
+    private T[] items;
     private int count = 0;
 
     // construct an empty randomized queue
     public RandomizedQueue() {
-        items = (Item[]) new Object[INITIAL_SIZE];
+        items = (T[]) new Object[INITIAL_SIZE];
     }
 
     // is the randomized queue empty?
@@ -25,7 +25,7 @@ public class RandomizedQueue <Item> implements Iterable<Item>{
     }
 
     // add the item
-    public void enqueue(Item item) {
+    public void enqueue(T item) {
 
         if (item == null) {
             throw new IllegalArgumentException("input item is null");
@@ -39,7 +39,7 @@ public class RandomizedQueue <Item> implements Iterable<Item>{
     }
 
     // remove and return a random item
-    public Item dequeue() {
+    public T dequeue() {
         if (isEmpty()) {
             throw new NoSuchElementException("queue is empty");
         }
@@ -47,7 +47,7 @@ public class RandomizedQueue <Item> implements Iterable<Item>{
         Random random = new Random();
 
         int randomIndex = random.nextInt(count);
-        Item item = items[randomIndex];
+        T item = items[randomIndex];
         items[randomIndex] = items[--count];
         items[count] = null;
 
@@ -55,7 +55,7 @@ public class RandomizedQueue <Item> implements Iterable<Item>{
     }
 
     // return a random item (but do not remove it)
-    public Item sample() {
+    public T peek() {
         if (isEmpty()) {
             throw new NoSuchElementException("queue is empty");
         }
@@ -67,17 +67,17 @@ public class RandomizedQueue <Item> implements Iterable<Item>{
     }
 
     // return an independent iterator over items in random order
-    public Iterator<Item> iterator() {
+    public Iterator<T> iterator() {
         return new RandomIterator();
     }
 
-    private class RandomIterator implements Iterator<Item> {
+    private class RandomIterator implements Iterator<T> {
 
-        private Item[] iterItems;
+        private T[] iterItems;
         private int curIndex;
 
         public RandomIterator() {
-            iterItems = (Item[]) new Object[count];
+            iterItems = (T[]) new Object[count];
             for (int i = 0; i < count; i++) {
                 iterItems[i] = items[i];
             }
@@ -86,10 +86,10 @@ public class RandomizedQueue <Item> implements Iterable<Item>{
             curIndex = 0;
         }
 
-        private void shuffleArray(Item[] array) {
-            List<Item> list = new ArrayList<>();
+        private void shuffleArray(T[] array) {
+            List<T> list = new ArrayList<>();
 
-            for (Item i : array) {
+            for (T i : array) {
                 list.add(i);
             }
 
@@ -106,7 +106,7 @@ public class RandomizedQueue <Item> implements Iterable<Item>{
         }
 
         @Override
-        public Item next() {
+        public T next() {
             if (!hasNext()) {
                 throw new NoSuchElementException("No more element to iterate");
             }
@@ -121,7 +121,7 @@ public class RandomizedQueue <Item> implements Iterable<Item>{
 
 
     private void resize(int size) {
-        Item[] newItems = (Item[]) new Object[size];
+        T[] newItems = (T[]) new Object[size];
         for (int i = 0; i < count; i++) {
             newItems[i] = items[i];
         }

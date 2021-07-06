@@ -19,7 +19,7 @@ class RandomizedQueueTest {
 
         System.out.println();
 
-        System.out.println("Current Item: " + randomizedQueue.sample());
+        System.out.println("Current Item: " + randomizedQueue.peek());
 
         System.out.println("Size before removing is : " + randomizedQueue.size());
 

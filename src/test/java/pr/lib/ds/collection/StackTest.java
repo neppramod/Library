@@ -68,4 +68,13 @@ class StackTest {
                 return 0.0;
         }
     }
+
+    @Test
+    public void testStack() {
+        Stack<Short> stack = new Stack<>();
+        stack.push((short) 2);
+        stack.push((short) 3);
+
+        assertEquals((short)stack.peek(), 3);
+    }
 }

@@ -7,11 +7,12 @@ public class RandomizedQueue <T> implements Iterable<T>{
     private static final int INITIAL_SIZE = 10;
 
     private T[] items;
-    private int count = 0;
+    private int count;
 
     // construct an empty randomized queue
     public RandomizedQueue() {
         items = (T[]) new Object[INITIAL_SIZE];
+        count = 0;
     }
 
     // is the randomized queue empty?

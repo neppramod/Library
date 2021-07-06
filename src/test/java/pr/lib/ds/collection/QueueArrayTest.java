@@ -2,13 +2,14 @@ package pr.lib.ds.collection;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Collections;
+
 import static org.junit.jupiter.api.Assertions.*;
 
-class QueueTest {
-
+class QueueArrayTest {
     @Test
     public void testQueue() {
-        Queue<Integer> queue = new Queue<>();
+        QueueArray<Integer> queue = new QueueArray<>();
         System.out.println("Is queue empty ? " + queue.isEmpty());
         System.out.println("Size at beginning is: " + queue.size());
         queue.enque(1);
@@ -33,25 +34,26 @@ class QueueTest {
     }
 
     @Test
-    public void testMoreItems() {
-        Queue<Integer> queue = new Queue<>();
-
-        for (int i = 0; i < 1000; i++) {
+    // At the time of this writing there is no support for PowerMockito with JUnit5
+    // Therefore only doing resizing
+    // You can use debug to test if resize method was called
+    public void testResizing() {
+        QueueArray<Integer> queue = new QueueArray<>();
+        for (int i = 0; i < 30; i++) {
             queue.enque(i);
         }
 
-        for (int i = 0; i < 990; i++) {
+        assertEquals(queue.size(), 30);
+        for (int i = 0; i < 20; i++) {
             queue.deque();
         }
 
-        for (Integer item: queue) {
+        System.out.println("Items: ");
+        for (Integer item : queue) {
             System.out.printf("%d, ", item);
         }
+        System.out.println();
 
         assertEquals(queue.size(), 10);
-        for (int i = 0; i < 10; i++) {
-            queue.deque();
-        }
-        assertEquals(queue.size(), 0);
     }
 }

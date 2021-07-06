@@ -160,7 +160,7 @@ public class Deque<T> implements Iterable<T> {
         @Override
         public Item next() {
 
-            if (current == null) {
+            if (!hasNext()) {
                 throw new NoSuchElementException("No more element to iterate");
             }
 

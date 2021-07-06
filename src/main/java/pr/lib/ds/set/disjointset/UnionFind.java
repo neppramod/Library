@@ -1,10 +1,18 @@
 package pr.lib.ds.set.disjointset;
 
-import pr.lib.ds.tree.segmenttree.Merger;
+import java.util.function.BiFunction;
+import java.util.function.BinaryOperator;
+import java.util.function.Function;
 
 /**
  * Generic implementation of union find data structure.
- * Merger can be implemented using lambda.
+ * Weighted union-find with path compression
+ *
+ * resultInitializer takes Integer as input and returns T to initialize res
+ * Here we are passing index i used to initialize id back to the caller
+ *
+ * merger is logic used to merge two nodes. The interface implementation must be passed from caller
+ *
  * find(i) returns result that uses merger.merge(i, j) logic.
  *
  * See unit test for usage
@@ -14,9 +22,9 @@ public class UnionFind<T> {
     private int[] id;
     private int[] sz;
     private T[] res;
-    private Merger merger;
+    private final BinaryOperator<T> merger;
 
-    public UnionFind(int n, Merger merger) {
+    public UnionFind(int n, Function<Integer, T> resultInitializer, BinaryOperator<T> merger) {
         id = new int[n];
         sz = new int[n];
         res = (T[]) new Object[n];
@@ -25,7 +33,7 @@ public class UnionFind<T> {
         for (int i = 0; i < n; i++) {
             id[i] = i;
             sz[i] = 1;
-            res[i] = (T) merger.merge(i, i);
+            res[i] = (T) resultInitializer.apply(i);
         }
     }
 
@@ -37,7 +45,7 @@ public class UnionFind<T> {
     public void union(int i, int j) {
         int p = root(i);
         int q = root(j);
-        T newResult = (T) merger.merge(res[p], res[q]);
+        T newResult = (T) merger.apply(res[p], res[q]);
 
         if (sz[p] > sz[q]) {
             sz[p] += sz[q];

@@ -3,13 +3,15 @@ package pr.lib.ds.tree.segmenttree;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.function.BinaryOperator;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class SegmentTreeRecTest {
 
     @Test
     public void testbuildTree() {
-        Merger<Integer> merger = (x, y) -> (x == null ? (y == null ? null : y) : x + y);
+        BinaryOperator<Integer> merger = (x, y) -> (x == null ? (y == null ? null : y) : x + y);
         SegmentTreeRec<Integer> segmentTree = new SegmentTreeRec<>(merger);
         Integer[] arr = {2, 3, 5, 6, 7};
         segmentTree.buildTree(arr);
@@ -18,7 +20,7 @@ public class SegmentTreeRecTest {
 
     @Test
     public void testQueryTree() {
-        Merger<Integer> merger = (x, y) -> (x == null ? (y == null ? null : y) : x + y);
+        BinaryOperator<Integer> merger = (x, y) -> (x == null ? (y == null ? null : y) : x + y);
         SegmentTreeRec<Integer> segmentTree = new SegmentTreeRec<>(merger);
         Integer[] arr = {2, 3, 5, 6, 7};
         segmentTree.buildTree(arr);
@@ -36,7 +38,7 @@ public class SegmentTreeRecTest {
 
     @Test
     public void testUpdateTree() {
-        Merger<Integer> merger = (x, y) -> (x == null ? (y == null ? null : y) : x + y);
+        BinaryOperator<Integer> merger = (x, y) -> (x == null ? (y == null ? null : y) : x + y);
         SegmentTreeRec<Integer> segmentTree = new SegmentTreeRec<>(merger);
         Integer[] arr = {2, 3, 5, 6, 7};
         segmentTree.buildTree(arr);

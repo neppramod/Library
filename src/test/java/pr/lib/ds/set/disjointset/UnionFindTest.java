@@ -1,15 +1,18 @@
 package pr.lib.ds.set.disjointset;
 
 import org.junit.jupiter.api.Test;
-import pr.lib.ds.tree.segmenttree.Merger;
+
+import java.util.function.BinaryOperator;
+import java.util.function.Function;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class UnionFindTest {
     @Test
     public void testFindLargest() {
-        Merger<Integer> merger = (x, y) -> (x == null ? (y == null ? null : y) : Math.max(x, y));
-        UnionFind<Integer> uf = new UnionFind<>(6, merger);
+        Function<Integer, Integer> resultInitializer = x -> x;  // set id back to res
+        BinaryOperator<Integer> binaryOperator = (x, y) -> (x == null ? (y == null ? null : y) : Math.max(x, y));
+        UnionFind<Integer> uf = new UnionFind<>(6, resultInitializer, binaryOperator);
         uf.union(3, 1);
 
         assertEquals(uf.find(1), Integer.valueOf(3));

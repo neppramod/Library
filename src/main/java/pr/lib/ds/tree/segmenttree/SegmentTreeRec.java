@@ -1,6 +1,7 @@
 package pr.lib.ds.tree.segmenttree;
 
 import java.util.Arrays;
+import java.util.function.BinaryOperator;
 
 /**
  * @param <T> Type of object in segment tree
@@ -15,14 +16,14 @@ public class SegmentTreeRec<T> {
     private T[] tree;
     private T[] lazy;
     private int N;
-    private final Merger<T> merger;
+    private final BinaryOperator<T> merger;
 
     /**
      * @param merger Interface that defines how merge happens
      *               Because of this update uses same logic, instead of being able to set update
      *               values separately. Logic can be provided using lambda
      */
-    public SegmentTreeRec(Merger merger) {
+    public SegmentTreeRec(BinaryOperator<T> merger) {
         this.merger = merger;
     }
 
@@ -85,7 +86,7 @@ public class SegmentTreeRec<T> {
         int mid = lo + (hi - lo) / 2;
         buildTree(arr, treeIndex * 2 + 1, lo, mid);
         buildTree(arr, treeIndex * 2 + 2, mid + 1, hi);
-        tree[treeIndex] = merger.merge(tree[treeIndex * 2 + 1], tree[treeIndex * 2 + 2]);
+        tree[treeIndex] = merger.apply(tree[treeIndex * 2 + 1], tree[treeIndex * 2 + 2]);
     }
 
     private T querySegmentTree(int treeIndex, int lo, int hi, int left, int right) {
@@ -93,11 +94,11 @@ public class SegmentTreeRec<T> {
             return null;
         }
         if (lazy[treeIndex] != null) {
-            tree[treeIndex] = merger.merge(tree[treeIndex], lazy[treeIndex]);
+            tree[treeIndex] = merger.apply(tree[treeIndex], lazy[treeIndex]);
 
             if (lo != hi) {
-                lazy[treeIndex * 2 + 1] = merger.merge(lazy[treeIndex * 2 + 1], lazy[treeIndex]);
-                lazy[treeIndex * 2 + 2] = merger.merge(lazy[treeIndex * 2 + 2], lazy[treeIndex]);
+                lazy[treeIndex * 2 + 1] = merger.apply(lazy[treeIndex * 2 + 1], lazy[treeIndex]);
+                lazy[treeIndex * 2 + 2] = merger.apply(lazy[treeIndex * 2 + 2], lazy[treeIndex]);
             }
 
             lazy[treeIndex] = null;
@@ -118,7 +119,7 @@ public class SegmentTreeRec<T> {
         T leftQuery = querySegmentTree(treeIndex * 2 + 1, lo, mid, left, mid);
         T rightQuery = querySegmentTree(treeIndex * 2 + 2, mid + 1, hi, mid + 1, right);
 
-        return merger.merge(leftQuery, rightQuery);
+        return merger.apply(leftQuery, rightQuery);
     }
 
     private void updateSegmentTree(int treeIndex, int lo, int hi, int left, int right, T val) {
@@ -127,22 +128,22 @@ public class SegmentTreeRec<T> {
         }
 
         if (lazy[treeIndex] != null) {
-            tree[treeIndex] = merger.merge(tree[treeIndex], lazy[treeIndex]);
+            tree[treeIndex] = merger.apply(tree[treeIndex], lazy[treeIndex]);
 
             if (lo != hi) {
-                lazy[treeIndex * 2 + 1] = merger.merge(lazy[treeIndex * 2 + 1], lazy[treeIndex]);
-                lazy[treeIndex * 2 + 2] = merger.merge(lazy[treeIndex * 2 + 2], lazy[treeIndex]);
+                lazy[treeIndex * 2 + 1] = merger.apply(lazy[treeIndex * 2 + 1], lazy[treeIndex]);
+                lazy[treeIndex * 2 + 2] = merger.apply(lazy[treeIndex * 2 + 2], lazy[treeIndex]);
             }
 
             lazy[treeIndex] = null;
         }
 
         if (left <= lo && hi <= right) {
-            tree[treeIndex] = merger.merge(tree[treeIndex], val);
+            tree[treeIndex] = merger.apply(tree[treeIndex], val);
 
             if (lo != hi) {
-                lazy[treeIndex * 2 + 1] = merger.merge(lazy[treeIndex * 2 + 1], val);
-                lazy[treeIndex * 2 + 2] = merger.merge(lazy[treeIndex * 2 + 2], val);
+                lazy[treeIndex * 2 + 1] = merger.apply(lazy[treeIndex * 2 + 1], val);
+                lazy[treeIndex * 2 + 2] = merger.apply(lazy[treeIndex * 2 + 2], val);
             }
 
             return;
@@ -152,7 +153,7 @@ public class SegmentTreeRec<T> {
         updateSegmentTree(treeIndex * 2 + 1, lo, mid, left, right, val);
         updateSegmentTree(treeIndex * 2 + 2, mid + 1, hi, left, right, val);
 
-        tree[treeIndex] = merger.merge(tree[treeIndex * 2 + 1], tree[treeIndex * 2 + 2]);
+        tree[treeIndex] = merger.apply(tree[treeIndex * 2 + 1], tree[treeIndex * 2 + 2]);
     }
 
     private boolean checkBoundary(int left, int right) {

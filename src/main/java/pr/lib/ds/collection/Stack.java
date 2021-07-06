@@ -1,6 +1,7 @@
 package pr.lib.ds.collection;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 
 /**
@@ -58,8 +59,20 @@ public class Stack<T> implements Iterable<T> {
     }
 
     public T pop() {
+        if (isEmpty()) {
+            throw new NoSuchElementException("Stack is empty");
+        }
+
         T item = (T)top.item;
         top = top.next;
         return item;
+    }
+
+    public T peek() {
+        if (isEmpty()) {
+            throw new NoSuchElementException("Stack is empty");
+        }
+
+        return (T)top.item;
     }
 }

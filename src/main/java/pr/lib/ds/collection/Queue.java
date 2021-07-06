@@ -24,6 +24,8 @@ public class Queue<T> implements Iterable<T> {
     // construct an empty queue
     public Queue() {
         count = 0;
+        first = null;
+        last = null;
     }
 
     // is the queue empty?
@@ -51,7 +53,7 @@ public class Queue<T> implements Iterable<T> {
 
         count++;
 
-        if (first == null) {
+        if (isEmpty()) {
             first = last;
         }
     }
@@ -66,7 +68,20 @@ public class Queue<T> implements Iterable<T> {
         first = first.next;
         count--;
 
+        if (isEmpty()) {
+            last = null;
+        }
+
         return item;
+    }
+
+    @Override
+    public String toString() {
+       StringBuilder sb = new StringBuilder();
+       for (T item : this) {
+           sb.append(item).append(' ');
+       }
+       return sb.toString();
     }
 
     // return item from front but do not remove it

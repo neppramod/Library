@@ -67,6 +67,15 @@ public class RandomizedQueue <T> implements Iterable<T>{
         return items[randomIndex];
     }
 
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (T item : this) {
+            sb.append(item).append(' ');
+        }
+        return sb.toString();
+    }
+
     // return an independent iterator over items in random order
     public Iterator<T> iterator() {
         return new RandomIterator();

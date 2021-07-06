@@ -83,6 +83,15 @@ public class QueueArray<T> implements Iterable<T> {
     }
 
     @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (T item : this) {
+            sb.append(item).append(' ');
+        }
+        return sb.toString();
+    }
+
+    @Override
     public Iterator<T> iterator() {
         return new ListIterator<T>();
     }

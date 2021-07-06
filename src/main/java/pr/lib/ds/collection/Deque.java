@@ -135,6 +135,15 @@ public class Deque<T> implements Iterable<T> {
         return (T) last.item;
     }
 
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (T item : this) {
+            sb.append(item).append(' ');
+        }
+        return sb.toString();
+    }
+
     // return an iterator over items in order from front to back
     public Iterator<T> iterator() {
         return new ListIterator<T>();

@@ -51,6 +51,15 @@ public class StackArray <T> implements Iterable<T> {
         return s[top-1];
     }
 
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (T item : this) {
+            sb.append(item).append(' ');
+        }
+        return sb.toString();
+    }
+
     private void resize(int size) {
         T[] copy = (T[]) new Object[size];
         for (int i = 0; i < top; i++) {

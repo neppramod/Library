@@ -13,32 +13,6 @@ import java.util.NoSuchElementException;
 public class Stack<T> implements Iterable<T> {
     private Node top = null;
 
-    @Override
-    public Iterator<T> iterator() {
-       return new ListIterator<T>();
-    }
-
-    private class ListIterator<T> implements Iterator<T> {
-        private Node current = top;
-
-        @Override
-        public boolean hasNext() {
-            return current != null;
-        }
-
-        @Override
-        public T next() {
-            T item = (T) current.item;
-            current = current.next;
-            return item;
-        }
-
-        @Override
-        public void remove() {
-            throw new UnsupportedOperationException("remove is not supported");
-        }
-    }
-
     private static class Node<T> {
         T item;
         Node next;
@@ -74,5 +48,40 @@ public class Stack<T> implements Iterable<T> {
         }
 
         return (T)top.item;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (T item : this) {
+            sb.append(item).append(' ');
+        }
+        return sb.toString();
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return new ListIterator<T>();
+    }
+
+    private class ListIterator<T> implements Iterator<T> {
+        private Node current = top;
+
+        @Override
+        public boolean hasNext() {
+            return current != null;
+        }
+
+        @Override
+        public T next() {
+            T item = (T) current.item;
+            current = current.next;
+            return item;
+        }
+
+        @Override
+        public void remove() {
+            throw new UnsupportedOperationException("remove is not supported");
+        }
     }
 }

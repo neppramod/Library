@@ -1,4 +1,4 @@
-package pr.lib.ds.tree.segmenttreearr;
+package pr.lib.ds.tree.segmenttree;
 
 /**
  * Segment Tree using arr

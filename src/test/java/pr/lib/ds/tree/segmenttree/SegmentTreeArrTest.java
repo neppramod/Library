@@ -1,7 +1,7 @@
-package pr.lib.ds.tree.segmenttreearr;
+package pr.lib.ds.tree.segmenttree;
 
 import org.junit.jupiter.api.Test;
-import pr.lib.ds.tree.segmenttreearr.SegmentTreeArr;
+import pr.lib.ds.tree.segmenttree.SegmentTreeArr;
 
 import java.util.ArrayList;
 import java.util.Arrays;

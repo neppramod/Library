@@ -12,6 +12,7 @@ import static pr.lib.algo.sort.SortUtil.*;
  * The running time can be lower, if a lot of elements are already sorted
  *
  * This algorithm is very useful for sorting array that has only few elements at wrong index.
+ * Also stable
  */
 public class Insertion {
 

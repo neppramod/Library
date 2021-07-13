@@ -8,6 +8,10 @@ import static pr.lib.algo.sort.SortUtil.*;
  * Uses Knuth 3h + 1
  * Similar to insertion sort (move smaller elements to left), but uses h-sorting: h interleaved sorted subsequences
  * Unstable sorting
+ *
+ * In worst case for 3x + 1, the number of comparisons is O(N^(3/2))
+ *
+ * Practically useful algorithm for small arrays. E.g. bzip2, cClibc (embedded), /linux/kernel/groups.c
  */
 public class Shell {
 

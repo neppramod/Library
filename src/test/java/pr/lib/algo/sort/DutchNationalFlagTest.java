@@ -11,7 +11,7 @@ class DutchNationalFlagTest {
     void testSort() {
         Integer[] a = {0, 1, 1, 2, 2, 0, 1, 1, 0, 1, 0, 2, 2, 2, 1, 1, 0, 0, 0, 2, 1, 2, 0, 0, 1, 2};
         DutchNationalFlag sol = new DutchNationalFlag();
-        sol.sort(a, 1);
+        sol.sort(a);
         System.out.println(Arrays.toString(a));
 
         assertEquals(a[0] < a[a.length-1], true);

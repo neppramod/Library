@@ -6,28 +6,47 @@ import static pr.lib.algo.sort.SortUtil.*;
  * Implement dutch national flag algorithm to sort only 3 types of elements
  */
 public class DutchNationalFlag {
+
+
+    /**
+     * Implement dutch national flag algorithm to sort elements in array a
+     * @param a
+     */
+    public static void sort(Comparable[] a) {
+        sort(a, 0, a.length - 1);
+    }
+
     /**
      * Implement dutch national flag algorithm to sort elements in array a
      * @param a elements in array
-     * @param mid pass in the element that is considered mid, elements smaller than mid go to left half,
-     *            and greater than mid to right half
+     * Compare elements with v and smaller elements come to left and bigger go to right
+     *          If elements are already in correct place i and k does not move and j scans from lo to hi and completes
      */
-    public void sort(Comparable[] a, Comparable mid) {
-        int n = a.length;
+    private static void sort(Comparable[] a, int lo, int hi) {
+        if (lo >= hi) {
+            return;
+        }
 
-        int i = 0, j = 0, k = n-1;
+        int i = lo, j = lo, k = hi;
+        Comparable v = a[lo];
 
+        // j to k is not sorted, i to j is and k to n-1 is
         while (j <= k) {
-            if (less(a[j], mid)) {  // lower
+            int cmp = a[j].compareTo(v);
+
+            if (cmp < 0) {
                 swap(a, i, j);
                 i++;
                 j++;
-            } else if (greater(a[j], mid)) {  // higher
+            } else if (cmp > 0) {
                 swap(a, j, k);
                 k--;
-            } else {  // middle
+            } else {
                 j++;
             }
         }
+
+        sort(a, lo, i - 1);
+        sort(a, j + 1, hi);
     }
 }

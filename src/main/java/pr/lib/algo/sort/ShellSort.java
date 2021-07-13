@@ -13,7 +13,7 @@ import static pr.lib.algo.sort.SortUtil.*;
  *
  * Practically useful algorithm for small arrays. E.g. bzip2, cClibc (embedded), /linux/kernel/groups.c
  */
-public class Shell {
+public class ShellSort {
 
     public static void sort(Comparable[] a) {
         int n = a.length;

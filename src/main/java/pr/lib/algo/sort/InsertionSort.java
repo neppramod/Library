@@ -14,7 +14,7 @@ import static pr.lib.algo.sort.SortUtil.*;
  * This algorithm is very useful for sorting array that has only few elements at wrong index.
  * Also stable
  */
-public class Insertion {
+public class InsertionSort {
 
     /**
      * At iteration i, all elements on left (0 to i-1) is sorted

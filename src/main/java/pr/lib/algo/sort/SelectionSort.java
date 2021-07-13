@@ -7,7 +7,7 @@ import static pr.lib.algo.sort.SortUtil.*;
  * At iteration i, all elements on left (0 to i-1) is sorted
  * Find the index of the smallest element on the right of i (including i), and swap with i
  */
-public class Selection {
+public class SelectionSort {
 
     /**
      * At iteration i, all elements on left (0 to i-1) is sorted

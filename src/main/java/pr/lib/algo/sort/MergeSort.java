@@ -5,7 +5,7 @@ import static pr.lib.algo.sort.SortUtil.less;
 /**
  * Merge Sort: Implements Merge sort
  */
-public class Merge {
+public class MergeSort {
     /**
      * Implement merge operation, where a[lo..mid] is sorted and a[mid+1..hi] is sorted
      * O(nlogn) runtime guarantee, stable, but uses at least O(n) memory
@@ -15,7 +15,7 @@ public class Merge {
      * @param mid  mid index
      * @param hi high index
      */
-    private void merge(Comparable[] a, Comparable[] aux, int lo, int mid, int hi) {
+    private static void merge(Comparable[] a, Comparable[] aux, int lo, int mid, int hi) {
 
         // Copy from array a to auxiliary array
         for (int k = lo; k <= hi; k++) {
@@ -42,7 +42,7 @@ public class Merge {
      * Merge Sort elements of array a
      * @param a Array a elements
      */
-    public void sort(Comparable[] a) {
+    public static void sort(Comparable[] a) {
         Comparable[] aux = new Comparable[a.length];
         sort(a, aux, 0, a.length - 1);
     }
@@ -54,7 +54,7 @@ public class Merge {
      * @param lo  lo index
      * @param hi hi index
      */
-    private void sort(Comparable[] a, Comparable[] aux, int lo, int hi) {
+    private static void sort(Comparable[] a, Comparable[] aux, int lo, int hi) {
         if (hi <= lo) {
             return;
         }
